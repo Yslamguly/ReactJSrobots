@@ -12,6 +12,8 @@ In the project directory, you can run:
 2. Run `npm install`
 3. Run `npm start`
 
+## You can see the live project here: https://yslamguly.github.io/ReactJSrobots/
+
 ### `npm start`
 
 Runs the app in the development mode.\
