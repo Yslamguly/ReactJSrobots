@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/ReactJSrobots/static/css/main.41c0bab1.css",
-    "main.js": "/ReactJSrobots/static/js/main.5ed6987b.js",
+    "main.css": "/ReactJSrobots/static/css/main.5ac47b21.css",
+    "main.js": "/ReactJSrobots/static/js/main.61411ecd.js",
+    "static/media/SEGA.woff": "/ReactJSrobots/static/media/SEGA.47b4bfa94ef243af4a5b.woff",
     "index.html": "/ReactJSrobots/index.html",
-    "main.41c0bab1.css.map": "/ReactJSrobots/static/css/main.41c0bab1.css.map",
-    "main.5ed6987b.js.map": "/ReactJSrobots/static/js/main.5ed6987b.js.map"
+    "main.5ac47b21.css.map": "/ReactJSrobots/static/css/main.5ac47b21.css.map",
+    "main.61411ecd.js.map": "/ReactJSrobots/static/js/main.61411ecd.js.map"
   },
   "entrypoints": [
-    "static/css/main.41c0bab1.css",
-    "static/js/main.5ed6987b.js"
+    "static/css/main.5ac47b21.css",
+    "static/js/main.61411ecd.js"
   ]
 }
