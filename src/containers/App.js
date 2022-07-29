@@ -1,28 +1,19 @@
-import React,{Component}from "react";
+import React, {useEffect, useState} from "react";
 import CardList from "../components/CardList";
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import ErrorBoundry from '../components/ErrorBoundry';
 
-class App extends Component{
-    constructor() {
-        super()
-        this.state={
-            robots:[],
-            searchField:''
-        }
-    }
-    componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response=>response.json())
-            .then(users=> this.setState({robots:users}));
-    }
+const App = () => {
 
-    onSearchChange = (event) => {
-        this.setState({searchField: event.target.value})
-    }
-    render(){
-        const {robots,searchField} = this.state;
+    const [searchField, setSearchField] = useState('');
+    const [robots,setRobots] = useState([])
+
+    useEffect(()=>{
+        fetch('https://jsonplaceholder.typicode.com/users')
+                .then(response=>response.json())
+                .then(users=> {setRobots(users)});
+    },[])
         const filterRobots = robots.filter(robot=>{
             return robot.name.toLowerCase().includes(searchField.toLowerCase())
         })
@@ -33,7 +24,7 @@ class App extends Component{
             return (
                 <div className={'tc'}>
                     <h1 className={'underline'}>ROBOFRIENDS</h1>
-                    <SearchBox searchChange={this.onSearchChange}/>
+                    <SearchBox searchChange={(event) => setSearchField(event.target.value)}/>
                     <h1>Nothing found</h1>
                 </div>
             )
@@ -43,7 +34,7 @@ class App extends Component{
             return(
                 <div className={'tc'}>
                     <h1 className={'underline'}>ROBOFRIENDS</h1>
-                    <SearchBox searchChange={this.onSearchChange}/>
+                    <SearchBox searchChange={(event) => setSearchField(event.target.value)}/>
                     <Scroll>
                         <ErrorBoundry>
                             <CardList robots={filterRobots}/>
@@ -53,6 +44,10 @@ class App extends Component{
             );
         }
     }
-}
-
 export default App;
+
+
+
+
+
+
