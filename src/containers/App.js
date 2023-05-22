@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import '../App.css'
 import CardList from "../components/CardList";
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import ErrorBoundry from '../components/ErrorBoundry';
+import {changeSearchField, selectSearcherField} from "../redux/searcher/searcherSlice";
 
 const App = () => {
-
-    const [searchField, setSearchField] = useState('');
+    const textFieldValue = useSelector(selectSearcherField)
+    const dispatch = useDispatch()
     const [robots,setRobots] = useState([])
 
     useEffect(()=>{
@@ -16,7 +18,7 @@ const App = () => {
                 .then(users=> {setRobots(users)});
     },[])
         const filterRobots = robots.filter(robot=>{
-            return robot.name.toLowerCase().includes(searchField.toLowerCase())
+            return robot.name.toLowerCase().includes(textFieldValue.toLowerCase())
         })
         if(!robots.length){
             return <h1>Loading</h1>
@@ -25,7 +27,7 @@ const App = () => {
             return (
                 <div className={'tc'}>
                     <h1 className={'underline'}>ROBOFRIENDS</h1>
-                    <SearchBox searchChange={(event) => setSearchField(event.target.value)}/>
+                    <SearchBox searchChange={(e)=>dispatch(changeSearchField(e.target.value))}/>
                     <h1>Nothing found</h1>
                 </div>
             )
@@ -35,7 +37,7 @@ const App = () => {
             return(
                 <div className={'tc'}>
                     <h1 className={'underline'}>ROBOFRIENDS</h1>
-                    <SearchBox searchChange={(event) => setSearchField(event.target.value)}/>
+                    <SearchBox searchChange={(e)=>dispatch(changeSearchField(e.target.value))}/>
                     <Scroll>
                         <ErrorBoundry>
                             <CardList robots={filterRobots}/>
